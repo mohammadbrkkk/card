@@ -164,8 +164,8 @@ function App() {
         <section className="flex  flex-2/5 bg-gray-700 flex-wrap  justify-center">
           {/* create card  */}
           {login &&
-            cards.map((e) => {
-              return <CreateCard card={e}></CreateCard>;
+            cards.map((e, id) => {
+              return <CreateCard key={id} card={e}></CreateCard>;
             })}
         </section>
       </div>
