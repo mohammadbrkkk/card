@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CreateCard from "./components/ind";
 
 function App() {
   const [val, setVal] = useState({ check: false });
@@ -160,7 +161,12 @@ function App() {
           </div>
         </section>
         {/* right side  */}
-        <section className="flex-2/5 bg-gray-700"></section>
+        <section className="flex-2/5 bg-gray-700">
+          {login &&
+            cards.map((e) => {
+              return <CreateCard card={e}></CreateCard>;
+            })}
+        </section>
       </div>
     </>
   );
