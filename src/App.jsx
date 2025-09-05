@@ -54,13 +54,19 @@ function App() {
   // submit card
   const addHandle = () => {
     if (duplicate) {
+      // check checked
       if (!val.check) {
         return;
       }
+      // show card
       setLogin(true);
+      // add input value to master value
       setCards([...cards, val]);
+      // show toast notification
       setNotifVal(true);
+      // for duplicat in notif time
       setDuplicate(false);
+      // toast notification time
       setTimeout(() => {
         setDuplicate(true);
         setNotifVal(false);
@@ -74,7 +80,7 @@ function App() {
     <>
       {/* Toast Notification */}
       {notifVal && (
-        <div className="fixed   top-5 left-3/6 -translate-x-3/6">
+        <div className="fixed top-5 left-3/6 -translate-x-3/6">
           <h1 className="py-5 px-15 rounded-t-lg text-white shadow-sm  bg-green-800">
             Successfully created!
           </h1>
