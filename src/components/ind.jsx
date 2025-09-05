@@ -14,7 +14,7 @@ const CreateCard = ({ card, key }) => {
 
   return (
     <>
-      <div className=" flex m-5 w-2/5 h-80  bg-white/30  rounded-md shadow-2xl ">
+      <div className=" overflow-hidden flex m-5 w-2/5 h-80  bg-white/30  rounded-md shadow-2xl ">
         <div className="flex flex-col items-center w-full mt-2.5">
           <h1 className="t font-extrabold">
             {name} {lastName}
