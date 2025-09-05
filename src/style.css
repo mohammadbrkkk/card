@@ -33,8 +33,9 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 .not {
-  animation: notif 2s linear;
+  animation: notif linear;
 }
+
 @keyframes notif {
   from {
     width: 0;

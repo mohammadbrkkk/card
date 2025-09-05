@@ -91,8 +91,16 @@ function App() {
   return (
     <>
       {/* Toast Notification */}
-      {notifVal && <Toast></Toast>}
-      
+      {notifVal && (
+        <Toast
+          message="Successfully created!"
+          type="success"
+          position="L"
+          duration="2s"
+          showProgress={true}
+          progressColor="bg-red-200"
+        ></Toast>
+      )}
 
       <div className="w-screen min-h-screen flex">
         {/* left side  */}
