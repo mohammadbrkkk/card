@@ -51,6 +51,7 @@ function App() {
         break;
     }
   };
+
   // submit card
   const addHandle = () => {
     if (duplicate) {
@@ -62,6 +63,8 @@ function App() {
       setLogin(true);
       // add input value to master value
       setCards([...cards, val]);
+      // reset input
+      resetInputs();
       // show toast notification
       setNotifVal(true);
       // for duplicat in notif time
@@ -75,6 +78,14 @@ function App() {
     return;
 
     // checked input check
+  };
+  // reset all input
+  const resetInputs = () => {
+    setVal({ check: false });
+    document.querySelectorAll("input, textarea, select").forEach((el) => {
+      if (el.type === "checkbox") el.checked = false;
+      else el.value = "";
+    });
   };
   return (
     <>
