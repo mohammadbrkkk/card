@@ -1,7 +1,5 @@
 // create card and show in UI
-const CreateCard = ({ card, key }) => {
-  console.log(key);
-
+const CreateCard = ({ card }) => {
   const {
     name = "none",
     lastName = "none",

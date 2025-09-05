@@ -5,6 +5,8 @@ function App() {
   const [val, setVal] = useState({ check: false });
   const [cards, setCards] = useState([]);
   const [login, setLogin] = useState(false);
+  const [notifVal, setNotifVal] = useState(false);
+  const [duplicate, setDuplicate] = useState(true);
 
   // function handle input value
   const handleValue = (e) => {
@@ -51,15 +53,36 @@ function App() {
   };
   // submit card
   const addHandle = () => {
-    // checked input check
-    if (!val.check) {
-      return;
+    if (duplicate) {
+      if (!val.check) {
+        return;
+      }
+      setLogin(true);
+      setCards([...cards, val]);
+      setNotifVal(true);
+      setDuplicate(false);
+      setTimeout(() => {
+        setDuplicate(true);
+        setNotifVal(false);
+      }, 2000);
     }
-    setCards([...cards, val]);
-    setLogin(true);
+    return;
+
+    // checked input check
   };
   return (
     <>
+      {/* Toast Notification */}
+      {notifVal && (
+        <div className="fixed   top-5 left-3/6 -translate-x-3/6">
+          <h1 className="py-5 px-15 rounded-t-lg text-white shadow-sm  bg-green-800">
+            Successfully created!
+          </h1>
+          <div className=" h-1  not bg-red-800 w-full "></div>
+        </div>
+      )}
+      {/* */}
+
       <div className="w-screen min-h-screen flex">
         {/* left side  */}
         <section className=" flex-3/5 bg-gray-800 flex justify-center">
