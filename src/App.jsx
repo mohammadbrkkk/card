@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CreateCard from "./components/ind";
+import Toast from "./components/Toast";
 
 function App() {
   const [val, setVal] = useState({ check: false });
@@ -90,15 +91,8 @@ function App() {
   return (
     <>
       {/* Toast Notification */}
-      {notifVal && (
-        <div className="fixed top-5 left-3/6 -translate-x-3/6">
-          <h1 className="py-5 px-15 rounded-t-lg text-white shadow-sm  bg-green-800">
-            Successfully created!
-          </h1>
-          <div className=" h-1  not bg-red-800 w-full "></div>
-        </div>
-      )}
-      {/* */}
+      {notifVal && <Toast></Toast>}
+      
 
       <div className="w-screen min-h-screen flex">
         {/* left side  */}
