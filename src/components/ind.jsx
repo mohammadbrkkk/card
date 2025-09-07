@@ -1,4 +1,4 @@
-// create card and show in UI
+// components/ind.jsx
 const CreateCard = ({ card }) => {
   const {
     name = "none",
@@ -11,33 +11,30 @@ const CreateCard = ({ card }) => {
   } = card;
 
   return (
-    <>
-      <div className=" overflow-hidden flex m-5 w-2/5 h-80  bg-white/30  rounded-md shadow-2xl ">
-        <div className="flex flex-col items-center w-full mt-2.5">
-          <h1 className="t font-extrabold">
-            {name} {lastName}
-          </h1>
-          <p className="">{Email}</p>
-          <div className="mt-5">
-            <div className="mx-2 mb-2">
-              <span className=" font-extrabold">Job Title: </span>
-              <span>{Title}</span>
-            </div>
-            <div className="mx-2 mb-2">
-              <span className="font-extrabold">Company : </span>
-              <span>{company}</span>
-            </div>
-            <div className="mx-2 mb-2">
-              <span className="font-extrabold">Company Size: </span>
-              <span>{companySize} employes</span>
-            </div>
-            <div className="mt-10 mx-2">
-              <p>{Comment}</p>
-            </div>
-          </div>
+    <div className="overflow-hidden flex flex-col m-3 w-full sm:w-[48%] lg:w-2/5 h-80 bg-white/30 rounded-md shadow-2xl p-4">
+      <h1 className="font-extrabold text-lg">
+        {name} {lastName}
+      </h1>
+      <p>{Email}</p>
+      <div className="mt-4 space-y-2">
+        <div>
+          <span className="font-extrabold">Job Title: </span>
+          <span>{Title}</span>
+        </div>
+        <div>
+          <span className="font-extrabold">Company: </span>
+          <span>{company}</span>
+        </div>
+        <div>
+          <span className="font-extrabold">Company Size: </span>
+          <span>{companySize} employees</span>
+        </div>
+        <div className="mt-4">
+          <p>{Comment}</p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
+
 export default CreateCard;

@@ -6,7 +6,6 @@ const Toast = ({
   showProgress = true,
   progressColor,
 }) => {
-  // change props value to standard
   const custom = {
     message,
     type,
@@ -18,13 +17,12 @@ const Toast = ({
     progressColor,
   };
 
-  // if show progress false border change
-  !custom.showProgress && (custom.rounded = "rounded-md");
-  // set bg color , text color , Progress bar color
+  if (!custom.showProgress) custom.rounded = "rounded-md";
+
   switch (type) {
     case "success":
       custom.type = "bg-green-800";
-      custom.progressColor = "bg-red-800";
+      custom.progressColor = "bg-green-300";
       break;
     case "error":
       custom.type = "bg-red-500";
@@ -38,43 +36,40 @@ const Toast = ({
     case "info":
       custom.type = "bg-blue-500";
       custom.progressColor = "bg-blue-300";
-      custom.textColor = "text-white";
-      break;
-
-    default:
       break;
   }
-  // change toast position
+
   switch (position) {
     case "C":
-      custom.position = " left-3/6 -translate-x-3/6 ";
+      custom.position = "left-1/2 -translate-x-1/2";
       break;
     case "L":
-      custom.position = " left-10 ";
+      custom.position = "left-5";
       break;
     case "R":
-      custom.position = " right-10  ";
+      custom.position = "right-5";
       break;
   }
-  progressColor && (custom.progressColor = progressColor);
+
+  if (progressColor) custom.progressColor = progressColor;
+
   return (
-    <>
-      <div className={`fixed top-5 ${custom.position}`}>
-        <h1
-          className={`py-5 px-15 rounded-t-md ${custom.rounded}  ${custom.textColor} shadow-sm ${custom.type}`}
-        >
-          {message}
-        </h1>
-        {custom.showProgress && (
-          <div
-            style={{
-              animationDuration: custom.duration,
-            }}
-            className={` h-1 not  ${custom.progressColor} w-full`}
-          ></div>
-        )}
-      </div>
-    </>
+    <div
+      className={`fixed top-5 ${custom.position} w-[90%] max-w-sm md:max-w-md z-50`}
+    >
+      <h1
+        className={`py-4 px-6 ${custom.rounded} ${custom.textColor} shadow-sm ${custom.type}`}
+      >
+        {message}
+      </h1>
+
+      {custom.showProgress && (
+        <div
+          style={{ animationDuration: custom.duration }}
+          className={`h-1 w-full not ${custom.progressColor} rounded-b-md`}
+        />
+      )}
+    </div>
   );
 };
 
