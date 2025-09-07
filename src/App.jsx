@@ -111,7 +111,7 @@ function App() {
                 <input
                   onChange={handleValue}
                   type={field.type}
-                  className="px-2 py-3 rounded-md border border-gray-400"
+                  className="px-2 py-3 rounded-md border-2 border-gray-400"
                   id={field.id}
                   placeholder={field.placeholder}
                 />
@@ -124,7 +124,7 @@ function App() {
               <select
                 onChange={handleValue}
                 id="company-size"
-                className="px-2 py-3 rounded-md border border-gray-400"
+                className="px-2 py-3 rounded-md border-2 border-gray-400"
               >
                 <option defaultValue="">Select</option>
                 <option value="1-3">1 to 3</option>
@@ -142,7 +142,7 @@ function App() {
               </label>
               <textarea
                 onChange={handleValue}
-                className="h-[140px] px-2 py-3 rounded-md border border-gray-400"
+                className="h-[140px] px-2 py-3 rounded-md border-2 border-gray-400"
                 id="text-ar"
               ></textarea>
             </div>
