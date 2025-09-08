@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 
 const Toast = ({
   message = "none",
@@ -21,6 +21,7 @@ const Toast = ({
   };
   const [content, setContent] = useState(true);
   custom.duration = duration * 1000;
+
   setTimeout(() => {
     setContent(false);
     close(false);
@@ -86,4 +87,4 @@ const Toast = ({
   );
 };
 
-export default Toast;
+export default memo(Toast);
