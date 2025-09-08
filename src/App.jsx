@@ -39,6 +39,9 @@ function App() {
   };
 
   const addHandle = () => {
+    if (notifVal || error) {
+      return;
+    }
     if (!val.check) {
       setError(true);
       return;
@@ -48,10 +51,6 @@ function App() {
     setCards([...cards, val]);
     resetInputs();
     setNotifVal(true);
-
-    setTimeout(() => {
-      setNotifVal(false);
-    }, 2000);
   };
 
   const resetInputs = () => {
@@ -69,8 +68,9 @@ function App() {
           message="Successfully created!"
           type="success"
           position="C"
-          duration="2s"
+          duration="2"
           showProgress={true}
+          close={setNotifVal}
         />
       )}
       {error && (
@@ -78,8 +78,9 @@ function App() {
           message="Successfully created!"
           type="error"
           position="C"
-          duration="2s"
+          duration="2"
           showProgress={true}
+          close={setError}
         />
       )}
 

@@ -3,16 +3,12 @@ import { useState } from "react";
 const Toast = ({
   message = "none",
   type = "success",
-  duration = "2s",
+  duration = "2",
   position = "C",
   showProgress = true,
   progressColor,
+  close,
 }) => {
-  const [content, setContent] = useState(true);
-  setTimeout(() => {
-    setContent(false);
-  }, 2000);
-
   const custom = {
     message,
     type,
@@ -23,6 +19,12 @@ const Toast = ({
     rounded: "rounded-t-md",
     progressColor,
   };
+  const [content, setContent] = useState(true);
+  custom.duration = duration * 1000;
+  setTimeout(() => {
+    setContent(false);
+    close(false);
+  }, custom.duration);
 
   if (!custom.showProgress) custom.rounded = "rounded-md";
 
@@ -74,7 +76,7 @@ const Toast = ({
 
           {custom.showProgress && (
             <div
-              style={{ animationDuration: custom.duration }}
+              style={{ animationDuration: duration + "s" }}
               className={`h-1 w-full not ${custom.progressColor} rounded-b-md`}
             />
           )}
