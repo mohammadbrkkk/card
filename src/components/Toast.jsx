@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const Toast = ({
   message = "none",
   type = "success",
@@ -6,6 +8,11 @@ const Toast = ({
   showProgress = true,
   progressColor,
 }) => {
+  const [content, setContent] = useState(true);
+  setTimeout(() => {
+    setContent(false);
+  }, 2000);
+
   const custom = {
     message,
     type,
@@ -54,22 +61,26 @@ const Toast = ({
   if (progressColor) custom.progressColor = progressColor;
 
   return (
-    <div
-      className={`fixed top-5 ${custom.position} w-[90%] max-w-sm md:max-w-md z-50`}
-    >
-      <h1
-        className={`py-4 px-6 ${custom.rounded} ${custom.textColor} shadow-sm ${custom.type}`}
-      >
-        {message}
-      </h1>
-
-      {custom.showProgress && (
+    <>
+      {content && (
         <div
-          style={{ animationDuration: custom.duration }}
-          className={`h-1 w-full not ${custom.progressColor} rounded-b-md`}
-        />
+          className={`fixed top-5 ${custom.position} w-[90%] max-w-sm md:max-w-md z-50`}
+        >
+          <h1
+            className={`py-4 px-6 ${custom.rounded} ${custom.textColor} shadow-sm ${custom.type}`}
+          >
+            {message}
+          </h1>
+
+          {custom.showProgress && (
+            <div
+              style={{ animationDuration: custom.duration }}
+              className={`h-1 w-full not ${custom.progressColor} rounded-b-md`}
+            />
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

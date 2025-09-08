@@ -8,6 +8,7 @@ function App() {
   const [cards, setCards] = useState([]);
   const [login, setLogin] = useState(false);
   const [notifVal, setNotifVal] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleValue = (e) => {
     if (e.target.value === "") {
@@ -38,7 +39,10 @@ function App() {
   };
 
   const addHandle = () => {
-    if (!val.check) return;
+    if (!val.check) {
+      setError(true);
+      return;
+    }
 
     setLogin(true);
     setCards([...cards, val]);
@@ -64,6 +68,15 @@ function App() {
         <Toast
           message="Successfully created!"
           type="success"
+          position="C"
+          duration="2s"
+          showProgress={true}
+        />
+      )}
+      {error && (
+        <Toast
+          message="Successfully created!"
+          type="error"
           position="C"
           duration="2s"
           showProgress={true}
