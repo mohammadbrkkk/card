@@ -10,6 +10,7 @@ function App() {
   const [login, setLogin] = useState(false);
   const [notifVal, setNotifVal] = useState(false);
   const [error, setError] = useState(false);
+  const [checkInp, setCheckInp] = useState(true);
 
   const handleValue = (e) => {
     if (e.target.value === "") {
@@ -43,12 +44,19 @@ function App() {
     if (notifVal || error) {
       return;
     }
-    if (!val.check) {
-      setError(true);
-      return;
-    }
+    document.querySelectorAll("input, textarea, select").forEach((inp) => {
+      if (inp.value === "" || inp.value === "Select") {
+        inp.classList.add("border-red-600");
+        setCheckInp(false);
+      }
 
-    setLogin(true);
+      if (!val.check || checkInp) {
+        setError(true);
+        return;
+      }
+
+      setLogin(true);
+    });
     setCards([...cards, val]);
     resetInputs();
     setNotifVal(true);
