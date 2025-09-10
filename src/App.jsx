@@ -8,10 +8,11 @@ function App() {
   const [val, setVal] = useState({ check: false });
   const [cards, setCards] = useState([]);
   const [login, setLogin] = useState(false);
-  const [notifVal, setNotifVal] = useState(false);
-  const [error, setError] = useState(false);
-  const [checkInp, setCheckInp] = useState(true);
-
+  const [errorOpt, setErrorOpt] = useState({
+    message: "Successfully created!",
+    type: "success",
+    state: false,
+  });
   const handleValue = (e) => {
     if (e.target.value === "") {
       e.target.classList.add("border-red-600");
@@ -41,25 +42,42 @@ function App() {
   };
 
   const addHandle = () => {
-    if (notifVal || error) {
+    if (errorOpt.state) {
       return;
     }
+    let checkInput = true;
     document.querySelectorAll("input, textarea, select").forEach((inp) => {
       if (inp.value === "" || inp.value === "Select") {
         inp.classList.add("border-red-600");
-        setCheckInp(false);
+        checkInput = false;
       }
-
-      if (!val.check || checkInp) {
-        setError(true);
-        return;
-      }
-
-      setLogin(true);
     });
+    if (!checkInput) {
+      setErrorOpt({
+        message: "Warning: You haven’t checked the box",
+        type: "error",
+        state: true,
+      });
+      return;
+    }
+
+    if (!val.check) {
+      setErrorOpt({
+        message: "Warning: You haven’t checked the box",
+        type: "warning",
+        state: true,
+      });
+      return;
+    }
+    setLogin(true);
     setCards([...cards, val]);
     resetInputs();
-    setNotifVal(true);
+    setErrorOpt({
+      message: "Successfully!",
+      type: "success",
+      state: true,
+    });
+    return;
   };
 
   const resetInputs = () => {
@@ -73,24 +91,14 @@ function App() {
   return (
     <>
       <Toast
-        message="Successfully created!"
-        type="success"
+        message={errorOpt.message}
+        type={errorOpt.type}
         position="C"
         duration="2"
         showProgress={true}
-        setState={setNotifVal}
-        state={notifVal}
+        setState={setErrorOpt}
+        state={errorOpt.state}
       />
-
-      <Toast
-        message="error!"
-        type="error"
-        duration="2"
-        showProgress={true}
-        setState={setError}
-        state={error}
-      />
-
       <div className="flex flex-col lg:flex-row w-full min-h-screen">
         {/* Left side */}
         <Inputs handleValue={handleValue} addHandle={addHandle}></Inputs>
