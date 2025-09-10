@@ -64,26 +64,24 @@ function App() {
 
   return (
     <>
-      {notifVal && (
-        <Toast
-          message="Successfully created!"
-          type="success"
-          position="C"
-          duration="2"
-          showProgress={true}
-          close={setNotifVal}
-        />
-      )}
-      {error && (
-        <Toast
-          message="Successfully created!"
-          type="error"
-          position="C"
-          duration="2"
-          showProgress={true}
-          close={setError}
-        />
-      )}
+      <Toast
+        message="Successfully created!"
+        type="success"
+        position="C"
+        duration="2"
+        showProgress={true}
+        setState={setNotifVal}
+        state={notifVal}
+      />
+
+      <Toast
+        message="error!"
+        type="error"
+        duration="2"
+        showProgress={true}
+        setState={setError}
+        state={error}
+      />
 
       <div className="flex flex-col lg:flex-row w-full min-h-screen">
         {/* Left side */}

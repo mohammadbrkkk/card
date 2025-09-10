@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
 const Toast = ({
   message = "none",
@@ -7,7 +7,8 @@ const Toast = ({
   position = "C",
   showProgress = true,
   progressColor,
-  close,
+  setState,
+  state,
 }) => {
   const custom = {
     message,
@@ -19,13 +20,17 @@ const Toast = ({
     rounded: "rounded-t-md",
     progressColor,
   };
-  const [content, setContent] = useState(true);
   custom.duration = duration * 1000;
-
-  setTimeout(() => {
-    setContent(false);
-    close(false);
-  }, custom.duration);
+  useEffect(() => {
+    if (state) {
+      setContent(true);
+      setTimeout(() => {
+        setContent(false);
+        setState(false);
+      }, custom.duration);
+    }
+  }, [state, custom.duration, setState]);
+  const [content, setContent] = useState(false);
 
   if (!custom.showProgress) custom.rounded = "rounded-md";
 
