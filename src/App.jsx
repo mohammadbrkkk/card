@@ -3,10 +3,12 @@ import { useState } from "react";
 import CreateCard from "./components/ind";
 import Toast from "./components/Toast";
 import Inputs from "./components/inputs";
+import { FaSearch } from "react-icons/fa";
 
 function App() {
   const [val, setVal] = useState({ check: false });
   const [cards, setCards] = useState([]);
+  const [filt, setFilt] = useState([]);
   const [login, setLogin] = useState(false);
   const [errorOpt, setErrorOpt] = useState({
     message: "Successfully created!",
@@ -52,7 +54,7 @@ function App() {
         checkInput = false;
       }
     });
-    if (!checkInput) {
+    if (checkInput) {
       setErrorOpt({
         message: "Error: fill the input",
         type: "error",
@@ -87,6 +89,26 @@ function App() {
       else el.value = "";
     });
   };
+  const handleSearch = (e) => {
+    const searchTerm = e.target.value.replace(/\s+/g, "").toLowerCase();
+    let arr = cards.filter((card) => {
+      let str = card.name + card.lastName;
+      str.toLowerCase;
+      if (str.includes(searchTerm)) {
+        return card;
+      }
+    });
+    if (searchTerm === "") {
+      setLogin(true);
+      arr = [];
+      setFilt(arr);
+    } else {
+      setFilt(arr);
+      setLogin(false);
+    }
+
+    // replace(/\s+/g, "").toLowerCase()
+  };
 
   return (
     <>
@@ -105,7 +127,19 @@ function App() {
 
         {/* Right side */}
         <section className="w-full lg:w-2/5 bg-gray-700 flex flex-wrap justify-center p-4">
+          <div className="flex  items-center w-10/12 h-10 bg-white text-center">
+            <label htmlFor="input-search">
+              <FaSearch className="mx-5" size="2rem" />
+            </label>
+            <input
+              onChange={handleSearch}
+              id="input-search"
+              className="w-full h-full border-black border-2 px-2"
+              type="text"
+            />
+          </div>
           {login && cards.map((e, id) => <CreateCard key={id} card={e} />)}
+          {!login && filt.map((e, id) => <CreateCard key={id} card={e} />)}
         </section>
       </div>
     </>
