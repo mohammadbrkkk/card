@@ -54,7 +54,7 @@ function App() {
     });
     if (!checkInput) {
       setErrorOpt({
-        message: "Warning: You haven’t checked the box",
+        message: "Error: fill the input",
         type: "error",
         state: true,
       });
