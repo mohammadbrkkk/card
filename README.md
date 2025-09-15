@@ -19,11 +19,10 @@ A simple and responsive card management UI built with **React** and **Vite**, fe
 
 ## 🚀 Getting Started
 
-1️⃣ Clone the repository
-bash
-git clone https://github.com/mohammadbrkkk/card.git
-cd card
-2️⃣ Install dependencies
-npm install
-3️⃣ Run the development server
-npm run dev
+## 1️⃣ Clone the repository
+- git clone https://github.com/mohammadbrkkk/card.git
+- cd card
+## 2️⃣ Install dependencies
+- npm install
+##3️⃣ Run the development server
+- npm run dev
