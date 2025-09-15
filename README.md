@@ -24,5 +24,5 @@ A simple and responsive card management UI built with **React** and **Vite**, fe
 - cd card
 ## 2️⃣ Install dependencies
 - npm install
-##3️⃣ Run the development server
+## 3️⃣ Run the development server
 - npm run dev
