@@ -1,9 +1,16 @@
+import { useEffect, useRef } from "react";
+
 const Inputs = ({ handleValue, addHandle }) => {
+  const foc = useRef();
+  useEffect(() => {
+    foc.current.focus();
+  }, []);
   return (
     <section className="w-full lg:w-3/5 bg-gray-800 flex justify-center p-6">
       <div className="text-white flex flex-wrap w-full md:w-3/4 gap-6">
         {[
           {
+            foc,
             id: "first-name",
             label: "First Name",
             type: "text",
@@ -37,6 +44,7 @@ const Inputs = ({ handleValue, addHandle }) => {
           <div key={field.id} className="w-full md:w-[48%] flex flex-col">
             <label htmlFor={field.id}>{field.label}</label>
             <input
+              ref={field.foc}
               onChange={handleValue}
               type={field.type}
               className="px-2 py-3 rounded-md border-2 border-gray-400"

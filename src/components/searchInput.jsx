@@ -8,9 +8,7 @@ const SearchInput = ({ cards, setLogin, setFilt }) => {
     let arr = cards.filter((card) => {
       let str = card.name + card.lastName;
       str.toLowerCase;
-      if (str.includes(searchTerm)) {
-        return card;
-      }
+      return str.includes(searchTerm) && card;
     });
     if (searchTerm === "") {
       setLogin(true);
