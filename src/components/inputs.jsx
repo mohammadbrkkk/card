@@ -6,7 +6,7 @@ const Inputs = ({ handleValue, addHandle }) => {
     foc.current.focus();
   }, []);
   return (
-    <section className="w-full lg:w-3/5 bg-gray-800 flex justify-center p-6">
+    <section className="w-full lg:w-3/5 lg:h-screen bg-gray-800 flex justify-center p-6">
       <div className="text-white flex flex-wrap w-full md:w-3/4 gap-6">
         {[
           {
@@ -103,6 +103,7 @@ const Inputs = ({ handleValue, addHandle }) => {
         </button>
       </div>
     </section>
+    
   );
 };
 export default Inputs;

@@ -48,6 +48,8 @@ function App() {
     }
     let checkInput = true;
     document.querySelectorAll("input, textarea, select").forEach((inp) => {
+      if (inp.id === "input-search") return;
+
       if (inp.value === "" || inp.value === "Select") {
         inp.classList.add("border-red-600");
         checkInput = false;
@@ -106,7 +108,7 @@ function App() {
         state={errorOpt.state}
       />
 
-      <div className="flex flex-col lg:flex-row w-full min-h-screen">
+      <div className="bg-gray-800 flex flex-col lg:flex-row w-full min-h-screen">
         {/* Left side */}
         <Inputs handleValue={handleValue} addHandle={addHandle}></Inputs>
 
