@@ -4,7 +4,6 @@ import CreateCard from "./components/ShowCards";
 import Toast from "./components/Toast";
 import Inputs from "./components/inputs";
 import SearchInput from "./components/searchInput";
-
 function App() {
   const [val, setVal] = useState({ check: false });
   const [cards, setCards] = useState([]);
@@ -54,7 +53,7 @@ function App() {
         checkInput = false;
       }
     });
-    if (checkInput) {
+    if (!checkInput) {
       setErrorOpt({
         message: "Error: fill the input",
         type: "error",
@@ -81,7 +80,12 @@ function App() {
     });
     return;
   };
-
+  const deletCard = (id) => {
+    const newCard = cards.filter((e, i) => {
+      return i !== id && e;
+    });
+    setCards(newCard);
+  };
   const resetInputs = () => {
     setVal({ check: false });
     document.querySelectorAll("input, textarea, select").forEach((el) => {
@@ -101,6 +105,7 @@ function App() {
         setState={setErrorOpt}
         state={errorOpt.state}
       />
+
       <div className="flex flex-col lg:flex-row w-full min-h-screen">
         {/* Left side */}
         <Inputs handleValue={handleValue} addHandle={addHandle}></Inputs>
@@ -108,14 +113,16 @@ function App() {
         {/* Right side */}
         <section className="w-full lg:w-2/5 bg-gray-700 flex flex-wrap justify-center p-4">
           {/* search bar */}
-
           <SearchInput
             cards={cards}
             setFilt={setFilt}
             setLogin={setLogin}
           ></SearchInput>
           {/* cards */}
-          {login && cards.map((e, id) => <CreateCard key={id} card={e} />)}
+          {login &&
+            cards.map((e, id) => (
+              <CreateCard key={id} id={id} onClick={deletCard} card={e} />
+            ))}
           {!login && filt.map((e, id) => <CreateCard key={id} card={e} />)}
         </section>
       </div>

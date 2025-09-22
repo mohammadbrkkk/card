@@ -1,5 +1,6 @@
 // components/ind.jsx
-const CreateCard = ({ card }) => {
+import { RxCross1 } from "react-icons/rx";
+const CreateCard = ({ id, card, onClick }) => {
   const {
     name = "none",
     lastName = "none",
@@ -10,8 +11,15 @@ const CreateCard = ({ card }) => {
     Comment = "none",
   } = card;
 
+  const delet = () => {
+    onClick(id);
+  };
   return (
-    <div className="overflow-hidden flex flex-col m-3 w-full sm:w-[48%] lg:w-2/5 h-80 bg-white/30 rounded-md shadow-2xl p-4">
+    <div className="relative overflow-hidden flex flex-col m-3 w-full sm:w-[48%] lg:w-2/5 h-80 bg-white/30 rounded-md shadow-2xl p-4">
+      <RxCross1
+        onClick={delet}
+        className="absolute cursor-pointer right-2 top-2 bg-red-500 text-white w-10 h-10 "
+      />
       <h1 className="font-extrabold text-lg">
         {name} {lastName}
       </h1>

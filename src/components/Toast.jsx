@@ -1,5 +1,4 @@
 import { memo, useEffect, useState } from "react";
-
 const Toast = ({
   message = "none",
   type = "success",
