@@ -88,6 +88,13 @@ function App() {
     });
     setCards(newCard);
   };
+  const editCard = (element, id) => {
+    const updateCards = cards.map((e, i) => {
+      i == id && (e = { ...e, ...element });
+      return e;
+    });
+    setCards(updateCards);
+  };
   const resetInputs = () => {
     setVal({ check: false });
     document.querySelectorAll("input, textarea, select").forEach((el) => {
@@ -107,7 +114,7 @@ function App() {
         setState={setErrorOpt}
         state={errorOpt.state}
       />
-
+      <div className="w-"></div>
       <div className="bg-gray-800 flex flex-col lg:flex-row w-full min-h-screen">
         {/* Left side */}
         <Inputs handleValue={handleValue} addHandle={addHandle}></Inputs>
@@ -123,7 +130,13 @@ function App() {
           {/* cards */}
           {login &&
             cards.map((e, id) => (
-              <CreateCard key={id} id={id} onClick={deletCard} card={e} />
+              <CreateCard
+                key={id}
+                id={id}
+                del={deletCard}
+                edit={editCard}
+                card={e}
+              />
             ))}
           {!login && filt.map((e, id) => <CreateCard key={id} card={e} />)}
         </section>

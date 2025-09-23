@@ -103,7 +103,6 @@ const Inputs = ({ handleValue, addHandle }) => {
         </button>
       </div>
     </section>
-    
   );
 };
 export default Inputs;
