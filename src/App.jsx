@@ -1,19 +1,23 @@
 // App.jsx
-import { useState } from "react";
+import useStatehooks from "./components/useStatehooks";
 import CreateCard from "./components/ShowCards";
 import Toast from "./components/Toast";
 import Inputs from "./components/inputs";
 import SearchInput from "./components/searchInput";
 function App() {
-  const [val, setVal] = useState({ check: false });
-  const [cards, setCards] = useState([]);
-  const [filt, setFilt] = useState([]);
-  const [login, setLogin] = useState(false);
-  const [errorOpt, setErrorOpt] = useState({
-    message: "Successfully created!",
-    type: "success",
-    state: false,
-  });
+  const {
+    val,
+    setVal,
+    cards,
+    setCards,
+    filt,
+    setFilt,
+    login,
+    setLogin,
+    errorOpt,
+    setErrorOpt,
+  } = useStatehooks();
+
   const handleValue = (e) => {
     if (e.target.value === "") {
       e.target.classList.add("border-red-600");
@@ -83,16 +87,13 @@ function App() {
     return;
   };
   const deletCard = (id) => {
-    const newCard = cards.filter((e, i) => {
-      return i !== id && e;
-    });
+    const newCard = cards.filter((_, i) => i !== id);
     setCards(newCard);
   };
   const editCard = (element, id) => {
-    const updateCards = cards.map((e, i) => {
-      i == id && (e = { ...e, ...element });
-      return e;
-    });
+    const updateCards = cards.map((e, i) =>
+      i === id ? { ...e, ...element } : e
+    );
     setCards(updateCards);
   };
   const resetInputs = () => {
