@@ -4,6 +4,8 @@ import CreateCard from "./components/ShowCards";
 import Toast from "./components/Toast";
 import Inputs from "./components/inputs";
 import SearchInput from "./components/searchInput";
+import { Outlet } from "react-router-dom";
+import { IdContext } from "./components/ContextId";
 function App() {
   const {
     val,
@@ -45,7 +47,6 @@ function App() {
       setVal({ ...val, [map[key]]: e.target.value });
     }
   };
-
   const addHandle = () => {
     if (errorOpt.state) {
       return;
@@ -142,6 +143,12 @@ function App() {
           {!login && filt.map((e, id) => <CreateCard key={id} card={e} />)}
         </section>
       </div>
+
+      {cards && (
+        <IdContext.Provider value={cards}>
+          <Outlet />
+        </IdContext.Provider>
+      )}
     </>
   );
 }

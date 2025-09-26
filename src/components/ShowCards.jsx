@@ -3,7 +3,8 @@ import { RxCross1 } from "react-icons/rx";
 import { FaPenSquare } from "react-icons/fa";
 import { FaSquareCheck } from "react-icons/fa6";
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
+import React from "react";
 const CreateCard = ({ id, card, del, edit }) => {
   const {
     name = "none",
@@ -46,9 +47,9 @@ const CreateCard = ({ id, card, del, edit }) => {
             onClick={() => setEditing(true)}
             className="absolute cursor-pointer right-2 bottom-2 bg-gray-600 text-white w-10 h-10"
           />
-          <h1 className="font-extrabold text-lg">
+          <Link to={`/${id}`} className="font-extrabold text-lg">
             {name} {lastName}
-          </h1>
+          </Link>
           <p>{Email}</p>
           <div className="mt-4 space-y-2">
             <div>
